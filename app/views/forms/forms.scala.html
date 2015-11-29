@@ -1,0 +1,76 @@
+@(testForm: Form[TestForm])
+
+@main("Forms") {
+
+    <ol class="breadcrumb">
+        <li><a href="@routes.Application.index()">Home</a></li>
+        <li class="active">Forms</li>
+    </ol>
+
+    <h1>Forms</h1>
+
+    @if(testForm.hasGlobalErrors){
+        <div class="alert alert-danger" role="alert">
+            @for(error <- testForm.errors){
+                <p>@error.message</p>
+            }
+        </div>
+    }
+
+    @helper.form(action = routes.FormsController.submit()) {
+
+        @helper.inputText(
+            testForm("textInput"),
+            '_label -> "Text"
+        )
+
+        @helper.inputText(
+            testForm("optionalTextInput"),
+            '_label -> "Optional Text"
+        )
+
+        @helper.inputText(
+            testForm("numberInput"),
+            '_showConstraints -> false,
+            '_label -> "Number"
+        )
+
+        @helper.select(
+            testForm("selectInput"),
+            helper.options(List("-- select --", "This one", "Or this one", "How about this one?")),
+            '_label -> "Select"
+        )
+
+        @helper.inputRadioGroup(
+            testForm("radioGroupInput"),
+            helper.options(List("Yes", "No", "Maybe")),
+            '_label -> "Radio Button"
+        )
+
+        @helper.inputDate(
+            testForm("dateInput"),
+            '_label -> "Date",
+            '_showConstraints -> false
+        )
+
+        @helper.inputPassword(
+            testForm("passwordInput"),
+            '_label -> "Password"
+        )
+
+        @helper.inputPassword(
+            testForm("confirmPasswordInput"),
+            '_label -> "Confirm Password"
+        )
+
+        @helper.checkbox(
+            testForm("checkboxInput"),
+            '_label -> "Checkbox input",
+            '_showConstraints -> false
+        )
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    }
+
+}

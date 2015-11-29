@@ -1,0 +1,18 @@
+@(formResults: List[String])
+
+
+@main("Form Results") {
+
+    <ol class="breadcrumb">
+        <li><a href="@routes.Application.index()">Home</a></li>
+        <li><a href="@routes.FormsController.view">Forms</a></li>
+        <li class="active">Results</li>
+    </ol>
+
+    <h3>Form Results</h3>
+
+    @for(result <- formResults){
+        <p>@result</p>
+    }
+
+}
