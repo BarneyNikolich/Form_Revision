@@ -1,16 +1,18 @@
 package controllers
 
+
 import models.TestForm
 import play.api.mvc.{Action, Controller}
+
 
 /**
  * Created by AdamT on 28/11/2015.
  */
 trait FormsController extends Controller {
 
-  def view = Action {
-    Ok(views.html.forms.forms(TestForm.form))
-  }
+    def view = Action {
+      Ok(views.html.forms.forms(TestForm.form))
+    }
 
   def submit = Action { implicit request =>
     TestForm.form.bindFromRequest.fold(
